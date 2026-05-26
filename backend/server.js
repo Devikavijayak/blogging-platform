@@ -13,7 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'],
+    origin: function (origin, callback) {
+        // Allow all origins for this project (or a specific VERCEL frontend URL if you know it)
+        callback(null, true);
+    },
     credentials: true,
 }));
 
