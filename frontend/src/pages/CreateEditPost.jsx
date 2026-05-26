@@ -24,7 +24,7 @@ const CreateEditPost = () => {
         if (isEdit) {
             const fetchPost = async () => {
                 try {
-                    const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
+                    const res = await axios.get(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}`);
                     setTitle(res.data.title);
                     setContent(res.data.content);
                 } catch (err) {
@@ -40,10 +40,10 @@ const CreateEditPost = () => {
         e.preventDefault();
         try {
             if (isEdit) {
-                await axios.put(`http://localhost:5000/api/posts/${id}`, { title, content }, { withCredentials: true });
+                await axios.put(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}`, { title, content }, { withCredentials: true });
                 navigate(`/post/${id}`);
             } else {
-                const res = await axios.post('http://localhost:5000/api/posts', { title, content }, { withCredentials: true });
+                const res = await axios.post('https://blogging-platform-h7ur.onrender.com/api/posts', { title, content }, { withCredentials: true });
                 navigate(`/post/${res.data._id}`);
             }
         } catch (err) {

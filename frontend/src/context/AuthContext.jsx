@@ -13,7 +13,7 @@ export const AuthProvider = ({ children }) => {
 
     const checkUser = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/api/auth/me', { withCredentials: true });
+            const res = await axios.get('https://blogging-platform-h7ur.onrender.com/api/auth/me', { withCredentials: true });
             setUser(res.data);
         } catch (err) {
             setUser(null);
@@ -23,16 +23,16 @@ export const AuthProvider = ({ children }) => {
     };
 
     const login = async (username, password) => {
-        const res = await axios.post('http://localhost:5000/api/auth/login', { username, password }, { withCredentials: true });
+        const res = await axios.post('https://blogging-platform-h7ur.onrender.com/api/auth/login', { username, password }, { withCredentials: true });
         setUser(res.data.user);
     };
 
     const register = async (username, email, password) => {
-        await axios.post('http://localhost:5000/api/auth/register', { username, email, password });
+        await axios.post('https://blogging-platform-h7ur.onrender.com/api/auth/register', { username, email, password });
     };
 
     const logout = async () => {
-        await axios.post('http://localhost:5000/api/auth/logout', {}, { withCredentials: true });
+        await axios.post('https://blogging-platform-h7ur.onrender.com/api/auth/logout', {}, { withCredentials: true });
         setUser(null);
     };
 

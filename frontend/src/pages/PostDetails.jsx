@@ -19,7 +19,7 @@ const PostDetails = () => {
     useEffect(() => {
         const fetchPost = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/posts/${id}`);
+                const res = await axios.get(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}`);
                 setPost(res.data);
             } catch (err) {
                 console.error(err);
@@ -27,7 +27,7 @@ const PostDetails = () => {
         };
         const fetchComments = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/posts/${id}/comments`);
+                const res = await axios.get(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}/comments`);
                 setComments(res.data);
             } catch (err) {
                 console.error(err);
@@ -35,7 +35,7 @@ const PostDetails = () => {
         };
         const fetchSimilar = async () => {
             try {
-                const res = await axios.get(`http://localhost:5000/api/posts/${id}/similar`);
+                const res = await axios.get(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}/similar`);
                 setSimilarPosts(res.data);
             } catch (err) {
                 console.error(err);
@@ -49,7 +49,7 @@ const PostDetails = () => {
     const handleDeletePost = async () => {
         if (window.confirm('Are you sure you want to delete this post?')) {
             try {
-                await axios.delete(`http://localhost:5000/api/posts/${id}`, { withCredentials: true });
+                await axios.delete(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}`, { withCredentials: true });
                 navigate('/');
             } catch (err) {
                 console.error(err);
@@ -60,7 +60,7 @@ const PostDetails = () => {
     const handleAddComment = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`http://localhost:5000/api/posts/${id}/comments`, { content: newComment }, { withCredentials: true });
+            const res = await axios.post(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}/comments`, { content: newComment }, { withCredentials: true });
             setComments([res.data, ...comments]);
             setNewComment('');
         } catch (err) {
@@ -71,7 +71,7 @@ const PostDetails = () => {
     const handleReply = async (e, parentId) => {
         e.preventDefault();
         try {
-            const res = await axios.post(`http://localhost:5000/api/posts/${id}/comments`, { content: replyContent, parentComment: parentId }, { withCredentials: true });
+            const res = await axios.post(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}/comments`, { content: replyContent, parentComment: parentId }, { withCredentials: true });
             setComments([res.data, ...comments]);
             setReplyingTo(null);
             setReplyContent('');
@@ -82,7 +82,7 @@ const PostDetails = () => {
 
     const handleDeleteComment = async (commentId) => {
         try {
-            await axios.delete(`http://localhost:5000/api/posts/comments/${commentId}`, { withCredentials: true });
+            await axios.delete(`https://blogging-platform-h7ur.onrender.com/api/posts/comments/${commentId}`, { withCredentials: true });
             setComments(comments.filter(c => c._id !== commentId));
         } catch (err) {
             console.error(err);
@@ -92,7 +92,7 @@ const PostDetails = () => {
     const handleUpvote = async () => {
         if (!user) return alert('Please login to vote');
         try {
-            const res = await axios.put(`http://localhost:5000/api/posts/${id}/upvote`, {}, { withCredentials: true });
+            const res = await axios.put(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}/upvote`, {}, { withCredentials: true });
             setPost(res.data);
         } catch (err) {
             console.error(err);
@@ -102,7 +102,7 @@ const PostDetails = () => {
     const handleDownvote = async () => {
         if (!user) return alert('Please login to vote');
         try {
-            const res = await axios.put(`http://localhost:5000/api/posts/${id}/downvote`, {}, { withCredentials: true });
+            const res = await axios.put(`https://blogging-platform-h7ur.onrender.com/api/posts/${id}/downvote`, {}, { withCredentials: true });
             setPost(res.data);
         } catch (err) {
             console.error(err);
